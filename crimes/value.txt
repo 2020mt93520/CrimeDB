@@ -1,0 +1,38 @@
+BEGIN;
+--
+-- Create model Accused
+--
+CREATE TABLE "accused" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(500) NOT NULL, "father_name" varchar(500) NOT NULL, "alias" varchar(500) NOT NULL, "address" varchar(100) NOT NULL, "nic" varchar(1000) NOT NULL, "gender" varchar(10) NOT NULL, "dob" date NOT NULL, "status" integer NOT NULL, "contact" varchar(20) NOT NULL, "phone" varchar(20) NOT NULL, "email" varchar(254) NOT NULL, "photo" varchar(200) NOT NULL, "finger_print" varchar(200) NOT NULL);
+--
+-- Create model Incident
+--
+CREATE TABLE "incident" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "place" text NOT NULL, "date" datetime NOT NULL);
+--
+-- Create model InvestigationOfficer
+--
+CREATE TABLE "investigationofficer" ("officer_id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(500) NOT NULL, "dob" date NOT NULL, "rank" integer NOT NULL, "contacts" varchar(30) NOT NULL);
+--
+-- Create model Petitioner
+--
+CREATE TABLE "petitioner" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(500) NOT NULL, "father_name" varchar(500) NOT NULL, "address" text NOT NULL, "contact" varchar(20) NOT NULL, "nic" varchar(50) NOT NULL UNIQUE);
+--
+-- Create model Victim
+--
+CREATE TABLE "victim" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(500) NOT NULL, "father_name" varchar(500) NOT NULL, "address" varchar(500) NOT NULL, "contact" varchar(30) NOT NULL, "nic" varchar(50) NOT NULL);
+--
+-- Create model FIR
+--
+CREATE TABLE "fir" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "date_lodged" datetime NOT NULL, "incident_id" bigint NOT NULL REFERENCES "incident" ("id") DEFERRABLE INITIALLY DEFERRED, "petitioner_id" bigint NOT NULL REFERENCES "petitioner" ("id") DEFERRABLE INITIALLY DEFERRED);
+CREATE TABLE "fir_accused" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "fir_id" bigint NOT NULL REFERENCES "fir" ("id") DEFERRABLE INITIALLY DEFERRED, "accused_id" bigint NOT NULL REFERENCES "accused" ("id") DEFERRABLE INITIALLY DEFERRED);
+--
+-- Create model Case
+--
+CREATE TABLE "case" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "case_id" integer NOT NULL, "law_section" text NOT NULL, "case_status" varchar(100) NOT NULL, "case_detail" text NOT NULL, "FIR_id" bigint NOT NULL REFERENCES "fir" ("id") DEFERRABLE INITIALLY DEFERRED, "investigation_officer_id" integer NOT NULL REFERENCES "investigationofficer" ("officer_id") DEFERRABLE INITIALLY DEFERRED);
+CREATE INDEX "fir_incident_id_4d076f53" ON "fir" ("incident_id");
+CREATE INDEX "fir_petitioner_id_264e7d1b" ON "fir" ("petitioner_id");
+CREATE UNIQUE INDEX "fir_accused_fir_id_accused_id_640f761e_uniq" ON "fir_accused" ("fir_id", "accused_id");
+CREATE INDEX "fir_accused_fir_id_721d31cd" ON "fir_accused" ("fir_id");
+CREATE INDEX "fir_accused_accused_id_0548bfa3" ON "fir_accused" ("accused_id");
+CREATE INDEX "case_FIR_id_c3ec2b8c" ON "case" ("FIR_id");
+CREATE INDEX "case_investigation_officer_id_8503691b" ON "case" ("investigation_officer_id");
+COMMIT;

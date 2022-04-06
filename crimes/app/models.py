@@ -54,6 +54,9 @@ class Incident(models.Model):
     place = models.TextField(max_length="")
     date = models.DateTimeField(editable=True)
 
+    def __str__(self):
+        return self.name
+
 
 class InvestigationOfficer(models.Model):
     officer_id = models.AutoField(verbose_name="Officer ID", primary_key=True)

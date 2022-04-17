@@ -1,0 +1,35 @@
+<form method="post" novalidate>
+    List of {{ type }}s
+    <table>
+        <tr>
+        {% for name, value in fields %}
+        <td><b>{{ name }}</b></td>
+        {% endfor %}
+        </tr>
+   {% for field in objects %}
+<!--        {% if count == 0 %}-->
+<!--        <tr>-->
+<!--        {% for name, value in field.get_fields %}-->
+<!--        {% if value %}-->
+<!--            <td><b>{{ name }}</b></td>-->
+<!--        {% endif %}-->
+<!--        {% endfor %}-->
+<!--        </tr>-->
+<!--        {% endif %}-->
+
+        <tr>
+        {% for name, value in field.get_fields %}
+        {% if value %}
+           <td>{{ value }}</td>
+        {% endif %}
+        {% endfor %}
+        </tr>
+    {% endfor %}
+    </table>
+    <style>
+    table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>
+</form>

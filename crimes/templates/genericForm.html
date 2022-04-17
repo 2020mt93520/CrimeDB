@@ -3,7 +3,6 @@
 
 <form method="post" novalidate>
    <h1> {{ type }} form </h1>
-  {% csrf_token %}
    {% for field in form %}
     <p>
         {{ field.label_tag }}<br>

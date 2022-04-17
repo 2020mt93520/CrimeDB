@@ -26,7 +26,7 @@ class Petitioner(models.Model):
 
 class Accused(models.Model):
     name = models.CharField(max_length=500, verbose_name="Accused name")
-    father_name = models.CharField(max_length=500, verbose_name="Verbose")
+    father_name = models.CharField(max_length=500, verbose_name="father name")
     alias = models.CharField(max_length=500, verbose_name="Accused alias")
     address = models.CharField(max_length=100, verbose_name="Accuse address")
     nic = models.CharField(max_length=1000, verbose_name="Accused NIC", unique=True)

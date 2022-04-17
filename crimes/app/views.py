@@ -2,13 +2,14 @@ import django.db
 from django.shortcuts import render
 from .models import *
 from .forms import *
+from django.views.decorators.csrf import csrf_exempt
 
-
+@csrf_exempt
 def home(request):
 
     return render(request, 'home.html', {})
 
-
+@csrf_exempt
 def petitioner(request):
     ctx = {
         'type' : 'petitioner'
@@ -30,7 +31,7 @@ def petitioner(request):
         ctx['form'] = form
     return render(request, 'genericForm.html', ctx)
 
-
+@csrf_exempt
 def GetAccusedForm(request):
     ctx = {
         'count' : 0,
@@ -54,7 +55,7 @@ def GetAccusedForm(request):
 
     return render(request, 'genericForm.html', ctx)
 
-
+@csrf_exempt
 def GetVictimForm(request):
 
     ctx = {
@@ -80,7 +81,7 @@ def GetVictimForm(request):
 
     return render(request, 'genericForm.html', ctx)
 
-
+@csrf_exempt
 def GetIncidentForm(request):
 
     ctx = {
@@ -105,7 +106,7 @@ def GetIncidentForm(request):
     print(ctx)
     return render(request, 'genericForm.html', ctx)
 
-
+@csrf_exempt
 def GetInvestigationOfficerForm(request):
 
     ctx = {
@@ -129,7 +130,7 @@ def GetInvestigationOfficerForm(request):
     print(ctx)
     return render(request, 'genericForm.html', ctx)
 
-
+@csrf_exempt
 def GetFIRForm(request):
 
     ctx = {
@@ -152,7 +153,7 @@ def GetFIRForm(request):
 
     return render(request, 'genericForm.html',ctx)
 
-
+@csrf_exempt
 def GetCaseForm(request):
 
     ctx = {
@@ -185,7 +186,7 @@ ObjSwitcher = {
     'case': Case,
 }
 
-
+@csrf_exempt
 def showPetitioner(request, type):
     objects = list(ObjSwitcher[type].objects.all())
     ctx = {
@@ -211,7 +212,7 @@ formSwitcher = {
         'case': UpdateCaseForm,
 }
 
-
+@csrf_exempt
 def updateForm(request, type):
 
     ctx = {
@@ -229,8 +230,7 @@ def updateForm(request, type):
             o = ObjSwitcher[type].objects.get(pk=case_data['id'])
             del case_data['id']
             for k,v in case_data.items():
-                exec(f'o.{k} = "{v}"')
-            o.save()
+                setattr(o,k,v)
 
             o.save()
             ctx["id"] = o.pk
@@ -242,6 +242,7 @@ def updateForm(request, type):
 
     return render(request, 'genericForm.html', ctx)
 
+@csrf_exempt
 def deleteForm(request, type):
 
     ctx = {

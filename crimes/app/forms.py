@@ -36,7 +36,7 @@ class InvestigationOfficerForm(ModelForm):
 class FIRForm(ModelForm):
     incident = ModelChoiceField(queryset=Incident.objects.all(), required=False)
     petitioner = ModelChoiceField(queryset=Petitioner.objects.all(), required=False)
-    accused = ModelChoiceField(queryset=Petitioner.objects.all(), required=False)
+    accused = ModelChoiceField(queryset=Accused.objects.all(), required=False)
 
     class Meta:
         model = FIR
@@ -94,7 +94,7 @@ class UpdateFIRForm(ModelForm):
     id  = IntegerField(required=True)
     incident = ModelChoiceField(queryset=Incident.objects.all(), required=False)
     petitioner = ModelChoiceField(queryset=Petitioner.objects.all(), required=False)
-    accused = ModelChoiceField(queryset=Petitioner.objects.all(), required=False)
+    accused = ModelChoiceField(queryset=Accused.objects.all(), required=False)
 
     class Meta:
         model = FIR

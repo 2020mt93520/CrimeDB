@@ -13,7 +13,7 @@ class Petitioner(models.Model):
     father_name = models.CharField(max_length=500)
     address = models.TextField(max_length=1500, default="")
     contact = models.CharField(max_length=20)
-    nic = models.CharField(max_length=50, unique=True)
+    nic = models.CharField(max_length=50)
 
     class Meta:
         db_table = "petitioner"
@@ -29,7 +29,7 @@ class Accused(models.Model):
     father_name = models.CharField(max_length=500, verbose_name="father name")
     alias = models.CharField(max_length=500, verbose_name="Accused alias")
     address = models.CharField(max_length=100, verbose_name="Accuse address")
-    nic = models.CharField(max_length=1000, verbose_name="Accused NIC", unique=True)
+    nic = models.CharField(max_length=1000, verbose_name="Accused NIC")
     gender = models.CharField(max_length=10, verbose_name="Accused gender")
     dob = models.DateField(verbose_name="Accused Date of birth")
     status = models.IntegerField(choices=STATUS, default=0, verbose_name="Accused status", )
@@ -37,7 +37,6 @@ class Accused(models.Model):
     phone = models.CharField(max_length=20, verbose_name="Accused phone")
     email = models.EmailField()
     photo = models.URLField(verbose_name="image of the accused")
-    finger_print = models.URLField(verbose_name="accused fingerprint")
 
     class Meta:
         db_table = "accused"
@@ -53,7 +52,7 @@ class Victim(models.Model):
     father_name = models.CharField(max_length=500, verbose_name="Victim's father")
     address = models.CharField(max_length=500, verbose_name="Victim's address")
     contact = models.CharField(max_length=30, verbose_name="Victim's contact")
-    nic = models.CharField(max_length=50, verbose_name="Victim's nic", unique=True)
+    nic = models.CharField(max_length=50, verbose_name="Victim's nic")
 
     class Meta:
         db_table = "victim"
@@ -69,6 +68,7 @@ class Incident(models.Model):
     date = models.DateTimeField(editable=True)
     class Meta:
         db_table = "incident"
+
     def get_fields(self):
         return [(field.name, field.value_to_string(self)) for field in Incident._meta.fields]
 

@@ -1,0 +1,157 @@
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+(0.001) SELECT (1) AS "a" FROM "petitioner" WHERE "petitioner"."nic" = '99887755' LIMIT 1; args=('99887755',); alias=default
+(0.000) INSERT INTO "petitioner" ("name", "father_name", "address", "contact", "nic") SELECT 'Daiwik', 'Shiv', 'Green Avenue Hauz Khas New Delhi', '998877665544', '99887755' RETURNING "petitioner"."id"; args=('Daiwik', 'Shiv', 'Green Avenue Hauz Khas New Delhi', '998877665544', '99887755'); alias=default
+(0.000) SELECT (1) AS "a" FROM "accused" WHERE "accused"."nic" = '123512' LIMIT 1; args=('123512',); alias=default
+(0.000) SELECT (1) AS "a" FROM "accused" WHERE "accused"."nic" = '1234567898765432' LIMIT 1; args=('1234567898765432',); alias=default
+(0.000) INSERT INTO "accused" ("name", "father_name", "alias", "address", "nic", "gender", "dob", "status", "contact", "phone", "email", "photo") SELECT 'new name', 'Father name', 'ass', 'ajsdf,as,df,asdf,', '1234567898765432', '23456789', '2012-04-04', 0, '9950626931', '+91 99406 26930', 'suri.g.135@gmail.com', '' RETURNING "accused"."id"; args=('new name', 'Father name', 'ass', 'ajsdf,as,df,asdf,', '1234567898765432', '23456789', '2012-04-04', 0, '9950626931', '+91 99406 26930', 'suri.g.135@gmail.com', ''); alias=default
+(0.000) SELECT (1) AS "a" FROM "accused" WHERE "accused"."nic" = '123512' LIMIT 1; args=('123512',); alias=default
+(0.000) INSERT INTO "accused" ("name", "father_name", "alias", "address", "nic", "gender", "dob", "status", "contact", "phone", "email", "photo") SELECT 'Sanjeev', 'Amrit', 'Sanju', 'Bhiwani Haryana', '123512', 'Male', '1965-04-23', 0, '9988776655', '7788993322', 'sanjeev.samson@gmail.com', '' RETURNING "accused"."id"; args=('Sanjeev', 'Amrit', 'Sanju', 'Bhiwani Haryana', '123512', 'Male', '1965-04-23', 0, '9988776655', '7788993322', 'sanjeev.samson@gmail.com', ''); alias=default
+(0.000) SELECT (1) AS "a" FROM "victim" WHERE "victim"."nic" = '1213654' LIMIT 1; args=('1213654',); alias=default
+(0.000) INSERT INTO "victim" ("name", "father_name", "address", "contact", "nic") SELECT 'Vipin', 'Shaurya', 'Royal Enclave Bhiwani Haryana', '7865674325', '1213654' RETURNING "victim"."id"; args=('Vipin', 'Shaurya', 'Royal Enclave Bhiwani Haryana', '7865674325', '1213654'); alias=default
+(0.002) INSERT INTO "incident" ("place", "date") SELECT 'Bhiwani Railway Station', '2022-04-15 00:00:00' RETURNING "incident"."id"; args=('Bhiwani Railway Station', '2022-04-15 00:00:00'); alias=default
+(0.000) SELECT "accused"."id", "accused"."name", "accused"."father_name", "accused"."alias", "accused"."address", "accused"."nic", "accused"."gender", "accused"."dob", "accused"."status", "accused"."contact", "accused"."phone", "accused"."email", "accused"."photo" FROM "accused" WHERE "accused"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.000) SELECT "fir"."id" FROM "fir" WHERE "fir"."accused_id" IN (1); args=(1,); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) DELETE FROM "accused" WHERE "accused"."id" IN (1); args=(1,); alias=default
+(0.001) INSERT INTO "investigation-officer" ("name", "dob", "rank", "contacts") SELECT 'Bikramjeet', '1986-06-23', 1008, '9876543140' RETURNING "investigation-officer"."id"; args=('Bikramjeet', '1986-06-23', 1008, '9876543140'); alias=default
+(0.000) SELECT "incident"."id", "incident"."place", "incident"."date" FROM "incident"; args=(); alias=default
+(0.000) SELECT "petitioner"."id", "petitioner"."name", "petitioner"."father_name", "petitioner"."address", "petitioner"."contact", "petitioner"."nic" FROM "petitioner"; args=(); alias=default
+(0.000) SELECT "accused"."id", "accused"."name", "accused"."father_name", "accused"."alias", "accused"."address", "accused"."nic", "accused"."gender", "accused"."dob", "accused"."status", "accused"."contact", "accused"."phone", "accused"."email", "accused"."photo" FROM "accused"; args=(); alias=default
+(0.000) SELECT "incident"."id", "incident"."place", "incident"."date" FROM "incident" WHERE "incident"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.000) SELECT "petitioner"."id", "petitioner"."name", "petitioner"."father_name", "petitioner"."address", "petitioner"."contact", "petitioner"."nic" FROM "petitioner" WHERE "petitioner"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.000) SELECT "accused"."id", "accused"."name", "accused"."father_name", "accused"."alias", "accused"."address", "accused"."nic", "accused"."gender", "accused"."dob", "accused"."status", "accused"."contact", "accused"."phone", "accused"."email", "accused"."photo" FROM "accused" WHERE "accused"."id" = 2 LIMIT 21; args=(2,); alias=default
+(0.000) SELECT (1) AS "a" FROM "incident" WHERE "incident"."id" = 1 LIMIT 1; args=(1,); alias=default
+(0.000) SELECT (1) AS "a" FROM "petitioner" WHERE "petitioner"."id" = 1 LIMIT 1; args=(1,); alias=default
+(0.000) SELECT (1) AS "a" FROM "accused" WHERE "accused"."id" = 2 LIMIT 1; args=(2,); alias=default
+(0.000) INSERT INTO "fir" ("date_lodged", "complaint", "incident_id", "petitioner_id", "accused_id") SELECT '2022-04-15 00:00:00', 'I am Daiwik age 32 years resident of Royal Enclave Bhiwani Haryana and was walking near Bhiwani railway station around 6PM on 15th April . I saw Sanjeev came on black pulsar bike and snatched gold chain from Sanjeev around 6:35PM. He was wearing red t-shirt and blue pants.', 1, 1, 2 RETURNING "fir"."id"; args=('2022-04-15 00:00:00', 'I am Daiwik age 32 years resident of Royal Enclave Bhiwani Haryana and was walking near Bhiwani railway station around 6PM on 15th April . I saw Sanjeev came on black pulsar bike and snatched gold chain from Sanjeev around 6:35PM. He was wearing red t-shirt and blue pants.', 1, 1, 2); alias=default
+(0.000) SELECT "fir"."id", "fir"."date_lodged", "fir"."complaint", "fir"."incident_id", "fir"."petitioner_id", "fir"."accused_id" FROM "fir"; args=(); alias=default
+(0.000) SELECT "incident"."id", "incident"."place", "incident"."date" FROM "incident" WHERE "incident"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.000) SELECT "investigation-officer"."id", "investigation-officer"."name", "investigation-officer"."dob", "investigation-officer"."rank", "investigation-officer"."contacts" FROM "investigation-officer"; args=(); alias=default
+(0.000) SELECT "fir"."id", "fir"."date_lodged", "fir"."complaint", "fir"."incident_id", "fir"."petitioner_id", "fir"."accused_id" FROM "fir" WHERE "fir"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.000) SELECT "investigation-officer"."id", "investigation-officer"."name", "investigation-officer"."dob", "investigation-officer"."rank", "investigation-officer"."contacts" FROM "investigation-officer" WHERE "investigation-officer"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.000) SELECT (1) AS "a" FROM "fir" WHERE "fir"."id" = 1 LIMIT 1; args=(1,); alias=default
+(0.000) SELECT (1) AS "a" FROM "investigation-officer" WHERE "investigation-officer"."id" = 1 LIMIT 1; args=(1,); alias=default
+(0.000) INSERT INTO "case" ("law_section", "case_status", "case_detail", "FIR_id", "investigation_officer_id") SELECT 'Section 390 of the Indian Penal Code', 'Open', 'Accused is guilty of robbing gold chain from victim.', 1, 1 RETURNING "case"."id"; args=('Section 390 of the Indian Penal Code', 'Open', 'Accused is guilty of robbing gold chain from victim.', 1, 1); alias=default
+(0.000) SELECT "fir"."id", "fir"."date_lodged", "fir"."complaint", "fir"."incident_id", "fir"."petitioner_id", "fir"."accused_id" FROM "fir"; args=(); alias=default
+(0.000) SELECT "incident"."id", "incident"."place", "incident"."date" FROM "incident" WHERE "incident"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.000) SELECT "investigation-officer"."id", "investigation-officer"."name", "investigation-officer"."dob", "investigation-officer"."rank", "investigation-officer"."contacts" FROM "investigation-officer"; args=(); alias=default
+(0.000) SELECT "fir"."id", "fir"."date_lodged", "fir"."complaint", "fir"."incident_id", "fir"."petitioner_id", "fir"."accused_id" FROM "fir"; args=(); alias=default
+(0.000) SELECT "incident"."id", "incident"."place", "incident"."date" FROM "incident" WHERE "incident"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.000) SELECT "investigation-officer"."id", "investigation-officer"."name", "investigation-officer"."dob", "investigation-officer"."rank", "investigation-officer"."contacts" FROM "investigation-officer"; args=(); alias=default
+(0.000) SELECT "petitioner"."id", "petitioner"."name", "petitioner"."father_name", "petitioner"."address", "petitioner"."contact", "petitioner"."nic" FROM "petitioner"; args=(); alias=default
+(0.000) SELECT "fir"."id", "fir"."date_lodged", "fir"."complaint", "fir"."incident_id", "fir"."petitioner_id", "fir"."accused_id" FROM "fir"; args=(); alias=default
+(0.000) SELECT "incident"."id", "incident"."place", "incident"."date" FROM "incident" WHERE "incident"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.000) SELECT "investigation-officer"."id", "investigation-officer"."name", "investigation-officer"."dob", "investigation-officer"."rank", "investigation-officer"."contacts" FROM "investigation-officer"; args=(); alias=default
+(0.000) SELECT "case"."id", "case"."law_section", "case"."case_status", "case"."case_detail", "case"."FIR_id", "case"."investigation_officer_id" FROM "case"; args=(); alias=default
+(0.000) SELECT "fir"."id", "fir"."date_lodged", "fir"."complaint", "fir"."incident_id", "fir"."petitioner_id", "fir"."accused_id" FROM "fir"; args=(); alias=default
+(0.000) SELECT "incident"."id", "incident"."place", "incident"."date" FROM "incident" WHERE "incident"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.000) SELECT "investigation-officer"."id", "investigation-officer"."name", "investigation-officer"."dob", "investigation-officer"."rank", "investigation-officer"."contacts" FROM "investigation-officer"; args=(); alias=default
+(0.000) SELECT "case"."id", "case"."law_section", "case"."case_status", "case"."case_detail", "case"."FIR_id", "case"."investigation_officer_id" FROM "case" WHERE "case"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.001) DELETE FROM "case" WHERE "case"."id" IN (1); args=(1,); alias=default
+(0.000) SELECT "fir"."id", "fir"."date_lodged", "fir"."complaint", "fir"."incident_id", "fir"."petitioner_id", "fir"."accused_id" FROM "fir" WHERE "fir"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.000) SELECT "investigation-officer"."id", "investigation-officer"."name", "investigation-officer"."dob", "investigation-officer"."rank", "investigation-officer"."contacts" FROM "investigation-officer" WHERE "investigation-officer"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.000) SELECT (1) AS "a" FROM "fir" WHERE "fir"."id" = 1 LIMIT 1; args=(1,); alias=default
+(0.000) SELECT (1) AS "a" FROM "investigation-officer" WHERE "investigation-officer"."id" = 1 LIMIT 1; args=(1,); alias=default
+(0.000) INSERT INTO "case" ("law_section", "case_status", "case_detail", "FIR_id", "investigation_officer_id") SELECT 'Section 390 of the Indian Penal Code', 'Open', 'Open accused is guilty of robbing gold chain from victim', 1, 1 RETURNING "case"."id"; args=('Section 390 of the Indian Penal Code', 'Open', 'Open accused is guilty of robbing gold chain from victim', 1, 1); alias=default
+(0.001) SELECT "petitioner"."id", "petitioner"."name", "petitioner"."father_name", "petitioner"."address", "petitioner"."contact", "petitioner"."nic" FROM "petitioner"; args=(); alias=default
+(0.000) SELECT "accused"."id", "accused"."name", "accused"."father_name", "accused"."alias", "accused"."address", "accused"."nic", "accused"."gender", "accused"."dob", "accused"."status", "accused"."contact", "accused"."phone", "accused"."email", "accused"."photo" FROM "accused"; args=(); alias=default
+(0.001) SELECT "victim"."id", "victim"."name", "victim"."father_name", "victim"."address", "victim"."contact", "victim"."nic" FROM "victim"; args=(); alias=default
+(0.000) SELECT "incident"."id", "incident"."place", "incident"."date" FROM "incident"; args=(); alias=default
+(0.000) SELECT "investigation-officer"."id", "investigation-officer"."name", "investigation-officer"."dob", "investigation-officer"."rank", "investigation-officer"."contacts" FROM "investigation-officer"; args=(); alias=default
+(0.000) SELECT "fir"."id", "fir"."date_lodged", "fir"."complaint", "fir"."incident_id", "fir"."petitioner_id", "fir"."accused_id" FROM "fir"; args=(); alias=default
+(0.001) SELECT "petitioner"."id", "petitioner"."name", "petitioner"."father_name", "petitioner"."address", "petitioner"."contact", "petitioner"."nic" FROM "petitioner"; args=(); alias=default
+(0.000) SELECT (1) AS "a" FROM "petitioner" WHERE "petitioner"."nic" = '99887755' LIMIT 1; args=('99887755',); alias=default
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 19 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, app, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+April 19, 2022 - 16:59:26
+Django version 4.0.3, using settings 'crimes.settings'
+Starting development server at http://127.0.0.1:3132/
+Quit the server with CONTROL-C.
+{'count': 0, 'type': 'incident', 'form': <IncidentForm bound=False, valid=Unknown, fields=(place;date)>}
+{'count': 0, 'type': 'investigation-officer', 'form': <InvestigationOfficerForm bound=False, valid=Unknown, fields=(name;dob;rank;contacts)>}
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+(0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+(0.000) SELECT "petitioner"."id", "petitioner"."name", "petitioner"."father_name", "petitioner"."address", "petitioner"."contact", "petitioner"."nic" FROM "petitioner" WHERE "petitioner"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.001) UPDATE "petitioner" SET "name" = 'Daiwik', "father_name" = 'Shiv', "address" = 'Green Avenue Hauz Khas New Delhi', "contact" = '9988776655', "nic" = '99887755' WHERE "petitioner"."id" = 1; args=('Daiwik', 'Shiv', 'Green Avenue Hauz Khas New Delhi', '9988776655', '99887755', 1); alias=default
+(0.000) SELECT (1) AS "a" FROM "accused" WHERE "accused"."nic" = '123512' LIMIT 1; args=('123512',); alias=default
+
+{'name': 'Daiwik', 'father_name': 'Shiv', 'address': 'Green Avenue Hauz Khas New Delhi', 'contact': '9988776655', 'nic': '99887755', 'id': 1}
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+(0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+(0.000) SELECT "accused"."id", "accused"."name", "accused"."father_name", "accused"."alias", "accused"."address", "accused"."nic", "accused"."gender", "accused"."dob", "accused"."status", "accused"."contact", "accused"."phone", "accused"."email", "accused"."photo" FROM "accused" WHERE "accused"."id" = 2 LIMIT 21; args=(2,); alias=default
+(0.001) UPDATE "accused" SET "name" = 'Sanjeev', "father_name" = 'Amrit', "alias" = 'Sanju', "address" = 'Bhiwani Haryana', "nic" = '123512', "gender" = 'Male', "dob" = '1965-04-23', "status" = 0, "contact" = '9988776655', "phone" = '7788993322', "email" = 'sanjeev.soni@gmail.com', "photo" = '' WHERE "accused"."id" = 2; args=('Sanjeev', 'Amrit', 'Sanju', 'Bhiwani Haryana', '123512', 'Male', '1965-04-23', 0, '9988776655', '7788993322', 'sanjeev.soni@gmail.com', '', 2); alias=default
+(0.001) SELECT "victim"."id", "victim"."name", "victim"."father_name", "victim"."address", "victim"."contact", "victim"."nic" FROM "victim" WHERE "victim"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.001) UPDATE "victim" SET "name" = 'Vipin', "father_name" = 'Shaurya Singh', "address" = 'Royal Enclave Bhiwani Haryana', "contact" = '7865674325', "nic" = '1213654' WHERE "victim"."id" = 1; args=('Vipin', 'Shaurya Singh', 'Royal Enclave Bhiwani Haryana', '7865674325', '1213654', 1); alias=default
+(0.000) SELECT "incident"."id", "incident"."place", "incident"."date" FROM "incident"; args=(); alias=default
+(0.000) SELECT "incident"."id", "incident"."place", "incident"."date" FROM "incident"; args=(); alias=default
+(0.000) SELECT "incident"."id", "incident"."place", "incident"."date" FROM "incident" WHERE "incident"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.001) UPDATE "incident" SET "place" = 'Bhiwani Railway Station	Dropout Area', "date" = '2022-04-15 00:00:00' WHERE "incident"."id" = 1; args=('Bhiwani Railway Station\tDropout Area', '2022-04-15 00:00:00', 1); alias=default
+(0.000) SELECT "investigation-officer"."id", "investigation-officer"."name", "investigation-officer"."dob", "investigation-officer"."rank", "investigation-officer"."contacts" FROM "investigation-officer" WHERE "investigation-officer"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.001) UPDATE "investigation-officer" SET "name" = 'Bikramjeet Singh', "dob" = '1986-06-23', "rank" = 1008, "contacts" = '9876543140' WHERE "investigation-officer"."id" = 1; args=('Bikramjeet Singh', '1986-06-23', 1008, '9876543140', 1); alias=default
+(0.000) SELECT "incident"."id", "incident"."place", "incident"."date" FROM "incident"; args=(); alias=default
+(0.000) SELECT "petitioner"."id", "petitioner"."name", "petitioner"."father_name", "petitioner"."address", "petitioner"."contact", "petitioner"."nic" FROM "petitioner"; args=(); alias=default
+(0.000) SELECT "accused"."id", "accused"."name", "accused"."father_name", "accused"."alias", "accused"."address", "accused"."nic", "accused"."gender", "accused"."dob", "accused"."status", "accused"."contact", "accused"."phone", "accused"."email", "accused"."photo" FROM "accused"; args=(); alias=default
+(0.000) SELECT "fir"."id", "fir"."date_lodged", "fir"."complaint", "fir"."incident_id", "fir"."petitioner_id", "fir"."accused_id" FROM "fir"; args=(); alias=default
+(0.000) SELECT "incident"."id", "incident"."place", "incident"."date" FROM "incident"; args=(); alias=default
+(0.000) SELECT "petitioner"."id", "petitioner"."name", "petitioner"."father_name", "petitioner"."address", "petitioner"."contact", "petitioner"."nic" FROM "petitioner"; args=(); alias=default
+(0.000) SELECT "accused"."id", "accused"."name", "accused"."father_name", "accused"."alias", "accused"."address", "accused"."nic", "accused"."gender", "accused"."dob", "accused"."status", "accused"."contact", "accused"."phone", "accused"."email", "accused"."photo" FROM "accused"; args=(); alias=default
+(0.000) SELECT "incident"."id", "incident"."place", "incident"."date" FROM "incident" WHERE "incident"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.000) SELECT "petitioner"."id", "petitioner"."name", "petitioner"."father_name", "petitioner"."address", "petitioner"."contact", "petitioner"."nic" FROM "petitioner" WHERE "petitioner"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.000) SELECT "accused"."id", "accused"."name", "accused"."father_name", "accused"."alias", "accused"."address", "accused"."nic", "accused"."gender", "accused"."dob", "accused"."status", "accused"."contact", "accused"."phone", "accused"."email", "accused"."photo" FROM "accused" WHERE "accused"."id" = 2 LIMIT 21; args=(2,); alias=default
+(0.000) SELECT (1) AS "a" FROM "incident" WHERE "incident"."id" = 1 LIMIT 1; args=(1,); alias=default
+(0.000) SELECT (1) AS "a" FROM "petitioner" WHERE "petitioner"."id" = 1 LIMIT 1; args=(1,); alias=default
+(0.000) SELECT (1) AS "a" FROM "accused" WHERE "accused"."id" = 2 LIMIT 1; args=(2,); alias=default
+(0.000) SELECT "fir"."id", "fir"."date_lodged", "fir"."complaint", "fir"."incident_id", "fir"."petitioner_id", "fir"."accused_id" FROM "fir" WHERE "fir"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.001) UPDATE "fir" SET "date_lodged" = '2022-04-15 00:00:00', "complaint" = 'I am Daiwik age 32 years resident of Royal Enclave Bhiwani Haryana and was walking near Bhiwani railway station drop out area around 6PM on 15th April . I saw Sanjeev came on black pulsar bike and snatched gold chain from Sanjeev around 6:35PM. He was wearing red t-shirt and blue pants.', "incident_id" = 1, "petitioner_id" = 1, "accused_id" = 2 WHERE "fir"."id" = 1; args=('2022-04-15 00:00:00', 'I am Daiwik age 32 years resident of Royal Enclave Bhiwani Haryana and was walking near Bhiwani railway station drop out area around 6PM on 15th April . I saw Sanjeev came on black pulsar bike and snatched gold chain from Sanjeev around 6:35PM. He was wearing red t-shirt and blue pants.', 1, 1, 2, 1); alias=default
+(0.000) SELECT "incident"."id", "incident"."place", "incident"."date" FROM "incident"; args=(); alias=default
+(0.000) SELECT "petitioner"."id", "petitioner"."name", "petitioner"."father_name", "petitioner"."address", "petitioner"."contact", "petitioner"."nic" FROM "petitioner"; args=(); alias=default
+(0.000) SELECT "accused"."id", "accused"."name", "accused"."father_name", "accused"."alias", "accused"."address", "accused"."nic", "accused"."gender", "accused"."dob", "accused"."status", "accused"."contact", "accused"."phone", "accused"."email", "accused"."photo" FROM "accused"; args=(); alias=default
+(0.000) SELECT "fir"."id", "fir"."date_lodged", "fir"."complaint", "fir"."incident_id", "fir"."petitioner_id", "fir"."accused_id" FROM "fir"; args=(); alias=default
+(0.000) SELECT "incident"."id", "incident"."place", "incident"."date" FROM "incident" WHERE "incident"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.000) SELECT "investigation-officer"."id", "investigation-officer"."name", "investigation-officer"."dob", "investigation-officer"."rank", "investigation-officer"."contacts" FROM "investigation-officer"; args=(); alias=default
+(0.000) SELECT "case"."id", "case"."law_section", "case"."case_status", "case"."case_detail", "case"."FIR_id", "case"."investigation_officer_id" FROM "case"; args=(); alias=default
+(0.000) SELECT "fir"."id", "fir"."date_lodged", "fir"."complaint", "fir"."incident_id", "fir"."petitioner_id", "fir"."accused_id" FROM "fir"; args=(); alias=default
+(0.000) SELECT "incident"."id", "incident"."place", "incident"."date" FROM "incident" WHERE "incident"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.000) SELECT "investigation-officer"."id", "investigation-officer"."name", "investigation-officer"."dob", "investigation-officer"."rank", "investigation-officer"."contacts" FROM "investigation-officer"; args=(); alias=default
+(0.000) SELECT "fir"."id", "fir"."date_lodged", "fir"."complaint", "fir"."incident_id", "fir"."petitioner_id", "fir"."accused_id" FROM "fir" WHERE "fir"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.000) SELECT "investigation-officer"."id", "investigation-officer"."name", "investigation-officer"."dob", "investigation-officer"."rank", "investigation-officer"."contacts" FROM "investigation-officer" WHERE "investigation-officer"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.000) SELECT (1) AS "a" FROM "fir" WHERE "fir"."id" = 1 LIMIT 1; args=(1,); alias=default
+(0.000) SELECT (1) AS "a" FROM "investigation-officer" WHERE "investigation-officer"."id" = 1 LIMIT 1; args=(1,); alias=default
+(0.000) SELECT "incident"."id", "incident"."place", "incident"."date" FROM "incident" WHERE "incident"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.000) SELECT "case"."id", "case"."law_section", "case"."case_status", "case"."case_detail", "case"."FIR_id", "case"."investigation_officer_id" FROM "case" WHERE "case"."id" = 2 LIMIT 21; args=(2,); alias=default
+(0.001) UPDATE "case" SET "law_section" = 'Section 390 of the Indian Penal Code', "case_status" = 'Open', "case_detail" = 'Accused is guilty of robbing gold chain from victim near drop out area of Bhiwani railway station.', "FIR_id" = 1, "investigation_officer_id" = 1 WHERE "case"."id" = 2; args=('Section 390 of the Indian Penal Code', 'Open', 'Accused is guilty of robbing gold chain from victim near drop out area of Bhiwani railway station.', 1, 1, 2); alias=default
+(0.000) SELECT "case"."id", "case"."law_section", "case"."case_status", "case"."case_detail", "case"."FIR_id", "case"."investigation_officer_id" FROM "case"; args=(); alias=default
+(0.000) SELECT "petitioner"."id", "petitioner"."name", "petitioner"."father_name", "petitioner"."address", "petitioner"."contact", "petitioner"."nic" FROM "petitioner" WHERE "petitioner"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.000) SELECT "fir"."id" FROM "fir" WHERE "fir"."petitioner_id" IN (1); args=(1,); alias=default
+
+0.003) SELECT "accused"."id", "accused"."name", "accused"."father_name", "accused"."alias", "accused"."address", "accused"."nic", "accused"."gender", "accused"."dob", "accused"."status", "accused"."contact", "accused"."phone", "accused"."email", "accused"."photo" FROM "accused"; args=(); alias=default
+(0.001) SELECT "petitioner"."id", "petitioner"."name", "petitioner"."father_name", "petitioner"."address", "petitioner"."contact", "petitioner"."nic" FROM "petitioner" WHERE "petitioner"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.001) SELECT "fir"."id" FROM "fir" WHERE "fir"."petitioner_id" IN (1); args=(1,); alias=default
+(0.001) SELECT "accused"."id", "accused"."name", "accused"."father_name", "accused"."alias", "accused"."address", "accused"."nic", "accused"."gender", "accused"."dob", "accused"."status", "accused"."contact", "accused"."phone", "accused"."email", "accused"."photo" FROM "accused" WHERE "accused"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.001) SELECT "victim"."id", "victim"."name", "victim"."father_name", "victim"."address", "victim"."contact", "victim"."nic" FROM "victim" WHERE "victim"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.001) DELETE FROM "victim" WHERE "victim"."id" IN (1); args=(1,); alias=default
+(0.001) SELECT "incident"."id", "incident"."place", "incident"."date" FROM "incident" WHERE "incident"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.000) SELECT "fir"."id" FROM "fir" WHERE "fir"."incident_id" IN (1); args=(1,); alias=default
+(0.000) SELECT "investigation-officer"."id", "investigation-officer"."name", "investigation-officer"."dob", "investigation-officer"."rank", "investigation-officer"."contacts" FROM "investigation-officer" WHERE "investigation-officer"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) DELETE FROM "case" WHERE "case"."investigation_officer_id" IN (1); args=(1,); alias=default
+(0.000) DELETE FROM "investigation-officer" WHERE "investigation-officer"."id" IN (1); args=(1,); alias=default
+(0.000) SELECT "fir"."id", "fir"."date_lodged", "fir"."complaint", "fir"."incident_id", "fir"."petitioner_id", "fir"."accused_id" FROM "fir" WHERE "fir"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) DELETE FROM "case" WHERE "case"."FIR_id" IN (1); args=(1,); alias=default
+(0.000) DELETE FROM "fir" WHERE "fir"."id" IN (1); args=(1,); alias=default
+(0.000) SELECT "case"."id", "case"."law_section", "case"."case_status", "case"."case_detail", "case"."FIR_id", "case"."investigation_officer_id" FROM "case" WHERE "case"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.001) SELECT "case"."id", "case"."law_section", "case"."case_status", "case"."case_detail", "case"."FIR_id", "case"."investigation_officer_id" FROM "case" WHERE "case"."id" = 2 LIMIT 21; args=(2,); alias=default

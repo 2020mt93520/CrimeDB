@@ -2,7 +2,7 @@ BEGIN;
 --
 -- Create model Accused
 --
-CREATE TABLE "accused" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(500) NOT NULL, "father_name" varchar(500) NOT NULL, "alias" varchar(500) NOT NULL, "address" varchar(100) NOT NULL, "nic" varchar(1000) NOT NULL UNIQUE, "gender" varchar(10) NOT NULL, "dob" date NOT NULL, "status" integer NOT NULL, "contact" varchar(20) NOT NULL, "phone" varchar(20) NOT NULL, "email" varchar(254) NOT NULL, "photo" varchar(200) NOT NULL, "finger_print" varchar(200) NOT NULL);
+CREATE TABLE "accused" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(500) NOT NULL, "father_name" varchar(500) NOT NULL, "alias" varchar(500) NOT NULL, "address" varchar(100) NOT NULL, "nic" varchar(1000) NOT NULL UNIQUE, "gender" varchar(10) NOT NULL, "dob" date NOT NULL, "status" integer NOT NULL, "contact" varchar(20) NOT NULL, "phone" varchar(20) NOT NULL, "email" varchar(254) NOT NULL, "photo" varchar(200) NOT NULL);
 --
 -- Create model Incident
 --

@@ -2,7 +2,7 @@
 <a href="/">home</a>
 
 <form method="post" novalidate>
-   <h1> {{ type }} form </h1>
+   <h1> {{ op }} {{ type }} form </h1>
    {% for field in form %}
     <p>
         {{ field.label_tag }}<br>
